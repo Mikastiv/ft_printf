@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_printf.h                                        :+:      :+:    :+:   */
+/*   width.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/14 20:37:02 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/15 17:33:24 by mleblanc         ###   ########.fr       */
+/*   Created: 2021/05/15 16:05:23 by mleblanc          #+#    #+#             */
+/*   Updated: 2021/05/15 17:33:54 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DO_PRINTF_H
-# define DO_PRINTF_H
+#ifndef WIDTH_H
+# define WIDTH_H
 
 # include <stdarg.h>
 
-int	do_printf(const char *fmt, va_list va, void (*ft_putc)(char));
+unsigned int	get_width(const char **fmt, va_list va, unsigned int *flags);
 
 #endif

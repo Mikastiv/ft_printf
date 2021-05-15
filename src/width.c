@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_printf.c                                        :+:      :+:    :+:   */
+/*   width.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/15 17:34:04 by mleblanc         ###   ########.fr       */
+/*   Created: 2021/05/15 16:11:02 by mleblanc          #+#    #+#             */
+/*   Updated: 2021/05/15 17:34:33 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "do_printf.h"
-#include "flags.h"
 #include "width.h"
+#include "flags.h"
 #include "libft.h"
 
-int	do_printf(const char *fmt, va_list va, void (*ft_putc)(char))
+unsigned int	get_width(const char **fmt, va_list va, unsigned int *flags)
 {
-	int				count;
-	unsigned int	flags;
 	unsigned int	width;
+	int				arg;
+	va_list			copy;
 
-	(void)va;
-	count = 0;
-	while (*fmt)
+	width = 0U;
+	if (ft_isdigit(**fmt))
+		while (ft_isdigit(**fmt))
+			width = width * 10U + (unsigned int)(*((*fmt)++) - '0');
+	else if (**fmt == '*')
 	{
-		if (*fmt != '%')
+		va_copy(copy, va);
+		arg = va_arg(copy, int);
+		if (arg < 0)
 		{
-			ft_putc(*fmt++);
-			count++;
-			continue ;
+			*flags |= F_LEFTALIGN;
+			width = (unsigned int)(-arg);
 		}
-		fmt++;
-		flags = get_flags(&fmt);
-		width = get_width(&fmt, va, &flags);
+		else
+			width = (unsigned int)arg;
+		va_end(copy);
+		(*fmt)++;
 	}
-	ft_putnbr_fd(flags, 1);
-	ft_putc('\n');
-	ft_putnbr_fd(width, 1);
-	ft_putc('\n');
-	return (count);
+	return (width);
 }

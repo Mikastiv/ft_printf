@@ -6,7 +6,7 @@
 #    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 19:00:56 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/14 23:07:49 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/05/15 17:34:17 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ MAKELIBFT	=	$(MAKE) -C libft
 SRC			=	src
 INC			=	include
 LIBFT_INC	=	libft
-CFILES		=	ft_printf.c do_printf.c
+CFILES		=	ft_printf.c do_printf.c flags.c width.c
 SRCS		=	$(addprefix $(SRC)/, $(CFILES))
 OBJS		=	$(SRCS:.c=.o)
 
@@ -28,6 +28,7 @@ CFLAGS		=	-Wall -Werror -Wextra
 RM			=	rm -rf
 CP			=	cp
 NORMINETTE	=	norminette
+
 
 $(SRC)/%.o:	$(SRC)/%.c
 			$(CC) $(CFLAGS) -c $< -o $@ -I$(INC) -I$(LIBFT_INC)

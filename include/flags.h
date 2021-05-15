@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_printf.h                                        :+:      :+:    :+:   */
+/*   flags.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/14 20:37:02 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/15 17:33:24 by mleblanc         ###   ########.fr       */
+/*   Created: 2021/05/15 14:32:19 by mleblanc          #+#    #+#             */
+/*   Updated: 2021/05/15 16:40:49 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DO_PRINTF_H
-# define DO_PRINTF_H
+#ifndef FLAGS_H
+# define FLAGS_H
 
-# include <stdarg.h>
+# define F_ZEROPAD 0x1U
+# define F_LEFTALIGN 0x2U
 
-int	do_printf(const char *fmt, va_list va, void (*ft_putc)(char));
+unsigned int	get_flags(const char **fmt);
 
 #endif
