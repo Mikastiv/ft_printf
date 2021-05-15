@@ -6,14 +6,14 @@
 #    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 19:00:56 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/14 20:06:15 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/05/14 20:36:35 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC			=	src
 OBJ			=	obj
 INC			=	include
-CFILES		=	ft_printf.c
+CFILES		=	ft_printf.c do_printf.c
 SRCS		=	$(addprefix $(SRC)/, $(CFILES))
 OBJS		=	$(addprefix $(OBJ)/, $(CFILES:.c=.o))
 NAME		=	libftprintf.a
@@ -30,7 +30,7 @@ $(OBJ)/%.o:	$(SRC)/%.c
 			$(CC) $(CFLAGS) -c $< -o $@ -I$(INC)
 
 $(NAME):	mkobj $(OBJS)
-			$(MAKELIBFT)
+			$(MAKELIBFT) bonus
 			$(LIBC) $(NAME) $(OBJS) $(LIBFT)
 
 mkobj:

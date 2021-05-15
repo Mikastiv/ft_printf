@@ -1,3 +1,4 @@
 *.o
 libftprintf.a
+libft.a
 .DS_Store
