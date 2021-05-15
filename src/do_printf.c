@@ -6,13 +6,13 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/14 22:09:04 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/14 22:14:46 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "do_printf.h"
 
-int	do_printf(const char *fmt, va_list va, void (*putc)(char))
+int	do_printf(const char *fmt, va_list va, void (*ft_putc)(char))
 {
 	int	count;
 
@@ -22,7 +22,7 @@ int	do_printf(const char *fmt, va_list va, void (*putc)(char))
 	{
 		if (*fmt != '%')
 		{
-			putc(*fmt++);
+			ft_putc(*fmt++);
 			count++;
 			continue ;
 		}

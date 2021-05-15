@@ -6,37 +6,36 @@
 #    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 19:00:56 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/14 22:07:49 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/05/14 23:07:49 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME		=	libftprintf.a
+LIBFT		=	libft/libft.a
+MAKELIBFT	=	$(MAKE) -C libft
+
 SRC			=	src
-OBJ			=	obj
 INC			=	include
+LIBFT_INC	=	libft
 CFILES		=	ft_printf.c do_printf.c
 SRCS		=	$(addprefix $(SRC)/, $(CFILES))
-OBJS		=	$(addprefix $(OBJ)/, $(CFILES:.c=.o))
-NAME		=	libftprintf.a
+OBJS		=	$(SRCS:.c=.o)
+
 CC			=	clang
 LIBC		=	ar rcs
 CFLAGS		=	-Wall -Werror -Wextra
-LIBFT		=	libft/libft.a
-MAKELIBFT	=	$(MAKE) -C libft
+
 RM			=	rm -rf
 CP			=	cp
-MKDIR		=	mkdir -p
 NORMINETTE	=	norminette
 
-$(OBJ)/%.o:	$(SRC)/%.c
-			$(CC) $(CFLAGS) -c $< -o $@ -I$(INC)
+$(SRC)/%.o:	$(SRC)/%.c
+			$(CC) $(CFLAGS) -c $< -o $@ -I$(INC) -I$(LIBFT_INC)
 
-$(NAME):	mkobj $(OBJS)
+$(NAME):	$(OBJS)
 			$(MAKELIBFT) bonus
 			$(CP) $(LIBFT) $(NAME)
 			$(LIBC) $(NAME) $(OBJS)
-
-mkobj:
-			$(MKDIR) $(OBJ)
 
 norme:
 			$(NORMINETTE) $(SRCS) $(INC)/*.h
@@ -53,4 +52,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re mkobj norme
+.PHONY:		all clean fclean re norme
