@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/14 20:41:08 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/14 22:09:04 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,18 @@
 
 int	do_printf(const char *fmt, va_list va, void (*putc)(char))
 {
-	(void)fmt;
+	int	count;
+
 	(void)va;
-	(void)putc;
+	count = 0;
+	while (*fmt)
+	{
+		if (*fmt != '%')
+		{
+			putc(*fmt++);
+			count++;
+			continue ;
+		}
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 19:00:56 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/14 20:36:35 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/05/14 22:07:49 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ CFLAGS		=	-Wall -Werror -Wextra
 LIBFT		=	libft/libft.a
 MAKELIBFT	=	$(MAKE) -C libft
 RM			=	rm -rf
+CP			=	cp
 MKDIR		=	mkdir -p
 NORMINETTE	=	norminette
 
@@ -31,7 +32,8 @@ $(OBJ)/%.o:	$(SRC)/%.c
 
 $(NAME):	mkobj $(OBJS)
 			$(MAKELIBFT) bonus
-			$(LIBC) $(NAME) $(OBJS) $(LIBFT)
+			$(CP) $(LIBFT) $(NAME)
+			$(LIBC) $(NAME) $(OBJS)
 
 mkobj:
 			$(MKDIR) $(OBJ)
