@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/15 20:15:09 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/16 00:19:27 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,73 +15,84 @@
 #include "libft.h"
 #include <stdbool.h>
 
-static unsigned int	get_flags(const char **fmt)
+static int	to_int(const char **fmt)
 {
-	unsigned int	flags;
+	int	width;
 
-	flags = 0U;
+	width = 0;
+	while (ft_isdigit(**fmt))
+		width = width * 10 + (*((*fmt)++) - '0');
+	return (width);
+}
+
+static void	get_flags(const char **fmt, t_pinfo *info)
+{
+	info->flags = 0U;
 	while (true)
 	{
 		if (**fmt == '0')
-			flags |= F_ZEROPAD;
+			info->flags |= F_ZEROPAD;
 		else if (**fmt == '-')
-			flags |= F_LEFTALIGN;
+			info->flags |= F_LEFTALIGN;
 		else
 			break ;
 		(*fmt)++;
 	}
-	return (flags);
 }
 
-static int	get_width(const char **fmt, va_list va, unsigned int *flags)
+static void	get_width(const char **fmt, t_pinfo *info)
 {
-	int	width;
 	int	arg;
 
-	width = 0;
+	info->width = 0;
 	if (ft_isdigit(**fmt))
-		while (ft_isdigit(**fmt))
-			width = width * 10 + (*((*fmt)++) - '0');
+		info->width = to_int(fmt);
 	else if (**fmt == '*')
 	{
-		arg = va_arg(va, int);
+		arg = va_arg(info->va, int);
 		if (arg < 0)
 		{
-			*flags |= F_LEFTALIGN;
-			width = -arg;
+			info->flags |= F_LEFTALIGN;
+			info->width = -arg;
 		}
 		else
-			width = arg;
+			info->width = arg;
 		(*fmt)++;
 	}
-	return (width);
 }
 
-int	do_printf(const char *fmt, va_list va, void (*ft_putc)(char))
+static void	get_precision(const char **fmt, t_pinfo *info)
 {
-	int				count;
-	unsigned int	flags;
-	int				width;
+	info->precision = 0;
+	if (**fmt == '.')
+	{
+		info->flags |= F_PRECISION;
+		(*fmt)++;
+		if (ft_isdigit(**fmt))
+			info->precision = to_int(fmt);
+		else if (**fmt == '*')
+		{
+			info->precision = va_arg(info->va, int);
+			(*fmt)++;
+		}
+	}
+}
 
-	(void)va;
-	count = 0;
+int	do_printf(const char *fmt, t_pinfo *info, void (*ft_putc)(char))
+{
+	info->count = 0;
 	while (*fmt)
 	{
 		if (*fmt != '%')
 		{
 			ft_putc(*fmt++);
-			count++;
+			info->count++;
 			continue ;
 		}
 		fmt++;
-		flags = get_flags(&fmt);
-		width = get_width(&fmt, va, &flags);
+		get_flags(&fmt, info);
+		get_width(&fmt, info);
+		get_precision(&fmt, info);
 	}
-	ft_putnbr_fd(flags, 2);
-	ft_putchar_fd('\n', 2);
-	ft_putnbr_fd(width, 2);
-	ft_putchar_fd('\n', 2);
-	ft_putnbr_fd(va_arg(va, int), 2);
-	ft_putchar_fd('\n', 2);
-	return (count);
+	return (info->count);
 }

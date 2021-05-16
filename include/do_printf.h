@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:37:02 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/15 17:33:24 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/15 23:23:08 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 
 # include <stdarg.h>
 
-int	do_printf(const char *fmt, va_list va, void (*ft_putc)(char));
+typedef struct s_pinfo
+{
+	va_list			va;
+	unsigned int	flags;
+	int				width;
+	int				precision;
+	int				count;
+}	t_pinfo;
+
+int	do_printf(const char *fmt, t_pinfo *info, void (*ft_putc)(char));
 
 #endif

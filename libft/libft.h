@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:39:54 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/12 14:32:59 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/15 23:10:57 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
+}	t_list;
 
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);

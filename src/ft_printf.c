@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:07:16 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/15 18:00:02 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/15 23:29:10 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	ft_putchar(char c)
 
 int	ft_printf(const char *format, ...)
 {
-	va_list	list;
+	t_pinfo	info;
 	int		result;
 
 	if (!format)
 		return (-1);
-	va_start(list, format);
-	result = do_printf(format, list, ft_putchar);
-	va_end(list);
+	va_start(info.va, format);
+	result = do_printf(format, &info, ft_putchar);
+	va_end(info.va);
 	return (result);
 }
