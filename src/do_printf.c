@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/16 14:40:43 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/16 18:18:01 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ static void	get_precision(const char **fmt, t_pinfo *info)
 		else if (**fmt == '*')
 		{
 			info->precision = va_arg(info->va, int);
+			if (info->precision < 0)
+				info->flags &= ~F_PRECISION;
 			(*fmt)++;
 		}
 	}
