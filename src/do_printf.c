@@ -6,13 +6,14 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/16 00:19:27 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/16 14:40:43 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "do_printf.h"
 #include "flags.h"
 #include "libft.h"
+#include "convert.h"
 #include <stdbool.h>
 
 static int	to_int(const char **fmt)
@@ -93,6 +94,7 @@ int	do_printf(const char *fmt, t_pinfo *info, void (*ft_putc)(char))
 		get_flags(&fmt, info);
 		get_width(&fmt, info);
 		get_precision(&fmt, info);
+		convert(&fmt, info, ft_putc);
 	}
 	return (info->count);
 }
