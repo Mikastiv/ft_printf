@@ -6,7 +6,7 @@
 #    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/07 13:43:15 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/07 18:24:30 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/05/16 01:06:59 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ OBJS	=	ft_memset.o ft_bzero.o ft_memcpy.o ft_memccpy.o ft_memmove.o $\
 			ft_strlcpy.o ft_strnlen.o ft_strlcat.o ft_strnstr.o ft_isspace.o $\
 			ft_atoi.o ft_strdup.o ft_calloc.o ft_substr.o ft_strjoin.o $\
 			ft_strtrim.o ft_split.o ft_itoa.o ft_strmapi.o ft_putchar_fd.o $\
-			ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o
+			ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_itoa_base.o
 BONUS	=	ft_lstnew.o ft_lstadd_front.o ft_lstsize.o ft_lstlast.o $\
 			ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o $\
 			ft_lstmap.o

@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:39:54 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/15 23:10:57 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/16 00:50:34 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		ft_tolower(int c);
 
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
+char	*ft_itoa_base(int n, const char *base);
 
 size_t	ft_strlen(const char *s);
 size_t	ft_strnlen(const char *s, size_t maxlen);
