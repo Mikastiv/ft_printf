@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 00:32:01 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/16 01:07:37 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/16 01:22:56 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static size_t	ft_numlen(int num, int base)
 static void	ft_num_to_ascii(char *buf, long n, const char *base, size_t len)
 {
 	size_t	base_len;
-	
+
 	base_len = ft_strlen(base);
 	if (n < 0)
 	{

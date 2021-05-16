@@ -6,7 +6,7 @@
 #    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 19:00:56 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/15 20:10:02 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/05/16 01:24:30 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ $(NAME):	$(OBJS)
 			$(LIBC) $(NAME) $(OBJS)
 
 norme:
+			$(MAKELIBFT) norme
 			$(NORMINETTE) $(SRCS) $(INC)/*.h
 
 all:		$(NAME)
