@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/16 18:18:01 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/16 20:22:35 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,14 @@ static void	get_precision(const char **fmt, t_pinfo *info)
 	}
 }
 
-int	do_printf(const char *fmt, t_pinfo *info, void (*ft_putc)(char))
+int	do_printf(const char *fmt, t_pinfo *info)
 {
 	info->count = 0;
 	while (*fmt)
 	{
 		if (*fmt != '%')
 		{
-			ft_putc(*fmt++);
+			info->ft_putc(*fmt++);
 			info->count++;
 			continue ;
 		}
@@ -96,7 +96,7 @@ int	do_printf(const char *fmt, t_pinfo *info, void (*ft_putc)(char))
 		get_flags(&fmt, info);
 		get_width(&fmt, info);
 		get_precision(&fmt, info);
-		convert(&fmt, info, ft_putc);
+		convert(&fmt, info);
 	}
 	return (info->count);
 }

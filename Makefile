@@ -6,7 +6,7 @@
 #    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 19:00:56 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/16 16:46:32 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/05/16 20:28:59 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ MAKELIBFT	=	$(MAKE) -C libft
 SRC			=	src
 INC			=	include
 LIBFT_INC	=	libft
-CFILES		=	ft_printf.c do_printf.c convert.c convert_char.c convert_str.c
+CFILES		=	ft_printf.c do_printf.c convert.c convert_char.c convert_str.c\
+				utils.c
 SRCS		=	$(addprefix $(SRC)/, $(CFILES))
 OBJS		=	$(SRCS:.c=.o)
 

@@ -6,18 +6,19 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:45:36 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/16 19:24:39 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/16 21:11:12 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "convert_str.h"
 #include "flags.h"
 #include "libft.h"
+#include "utils.h"
 #include <limits.h>
 
 #define NULL_STR "(null)"
 
-void	convert_str(const char **fmt, t_pinfo *info, void (*ft_putc)(char))
+void	convert_str(const char **fmt, t_pinfo *info)
 {
 	const char	*str;
 	int			len;
@@ -25,27 +26,17 @@ void	convert_str(const char **fmt, t_pinfo *info, void (*ft_putc)(char))
 	if (!(info->flags & F_PRECISION))
 		info->precision = INT_MAX;
 	str = va_arg(info->va, char *);
-	if (!str && info->precision > 5)
+	if (!str)
 		str = NULL_STR;
-	else if (!str)
-		str = "";
 	len = (int)ft_strnlen(str, (size_t)info->precision);
 	if (!(info->flags & F_LEFTALIGN))
-		while (len++ < info->width)
-		{
-			ft_putc(' ');
-			info->count++;
-		}
-	while (*str && (!(info->flags & F_PRECISION) || info->precision--))
+		add_padding(info, &len);
+	while (*str && info->precision--)
 	{
-		ft_putc(*str++);
+		info->ft_putc(*str++);
 		info->count++;
 	}
 	if (info->flags & F_LEFTALIGN)
-		while (len++ < info->width)
-		{
-			ft_putc(' ');
-			info->count++;
-		}
+		add_padding(info, &len);
 	(*fmt)++;
 }

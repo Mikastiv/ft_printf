@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert.c                                          :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 14:10:20 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/16 20:22:22 by mleblanc         ###   ########.fr       */
+/*   Created: 2021/05/16 20:25:46 by mleblanc          #+#    #+#             */
+/*   Updated: 2021/05/16 20:26:22 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "convert.h"
-#include "convert_char.h"
-#include "convert_str.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-void	convert(const char **fmt, t_pinfo *info)
-{
-	if (**fmt == 'c')
-		convert_char(fmt, info);
-	else if (**fmt == 's')
-		convert_str(fmt, info);
-}
+# include "do_printf.h"
+
+void	add_padding(t_pinfo *info, int *len);
+
+#endif

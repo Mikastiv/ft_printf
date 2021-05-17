@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:07:16 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/15 23:29:10 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/16 20:22:42 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	ft_printf(const char *format, ...)
 	if (!format)
 		return (-1);
 	va_start(info.va, format);
-	result = do_printf(format, &info, ft_putchar);
+	info.ft_putc = ft_putchar;
+	result = do_printf(format, &info);
 	va_end(info.va);
 	return (result);
 }
