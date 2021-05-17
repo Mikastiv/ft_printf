@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert.c                                          :+:      :+:    :+:   */
+/*   convert_percent.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 14:10:20 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/17 14:18:27 by mleblanc         ###   ########.fr       */
+/*   Created: 2021/05/17 14:15:46 by mleblanc          #+#    #+#             */
+/*   Updated: 2021/05/17 15:31:32 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "convert.h"
-#include "convert_char.h"
-#include "convert_str.h"
-#include "convert_ptr.h"
-#include "convert_percent.h"
+#ifndef CONVERT_PERCENT_H
+# define CONVERT_PERCENT_H
 
-void	convert(const char **fmt, t_pinfo *info)
-{
-	if (**fmt == 'c')
-		convert_char(fmt, info);
-	else if (**fmt == 's')
-		convert_str(fmt, info);
-	else if (**fmt == 'p')
-		convert_ptr(fmt, info);
-	else if (**fmt == '%')
-		convert_percent(fmt, info);
-}
+# include "do_printf.h"
+
+void	convert_percent(const char **fmt, t_pinfo *info);
+
+#endif

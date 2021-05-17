@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
+#    By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 19:00:56 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/16 23:57:55 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/05/17 14:17:27 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC			=	src
 INC			=	include
 LIBFT_INC	=	libft
 CFILES		=	ft_printf.c do_printf.c convert.c convert_char.c convert_str.c\
-				utils.c convert_ptr.c
+				utils.c convert_ptr.c convert_percent.c
 SRCS		=	$(addprefix $(SRC)/, $(CFILES))
 OBJS		=	$(SRCS:.c=.o)
 

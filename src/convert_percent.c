@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert.c                                          :+:      :+:    :+:   */
+/*   convert_percent.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 14:10:20 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/17 14:18:27 by mleblanc         ###   ########.fr       */
+/*   Created: 2021/05/17 14:16:52 by mleblanc          #+#    #+#             */
+/*   Updated: 2021/05/17 15:30:27 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "convert.h"
-#include "convert_char.h"
-#include "convert_str.h"
-#include "convert_ptr.h"
 #include "convert_percent.h"
+#include "flags.h"
+#include "utils.h"
 
-void	convert(const char **fmt, t_pinfo *info)
+void	convert_percent(const char **fmt, t_pinfo *info)
 {
-	if (**fmt == 'c')
-		convert_char(fmt, info);
-	else if (**fmt == 's')
-		convert_str(fmt, info);
-	else if (**fmt == 'p')
-		convert_ptr(fmt, info);
-	else if (**fmt == '%')
-		convert_percent(fmt, info);
+	int		padding;
+	char	pad_char;
+
+	padding = 1;
+	pad_char = ' ';
+	if (info->flags & F_ZEROPAD)
+		pad_char = '0';
+	if (!(info->flags & F_LEFTALIGN))
+		add_padding(info, &padding, pad_char);
+	info->ft_putc('%');
+	info->count++;
+	if (info->flags & F_LEFTALIGN)
+		add_padding(info, &padding, pad_char);
+	(*fmt)++;
 }
