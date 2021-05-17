@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_ptoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 20:25:46 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/16 23:20:35 by mleblanc         ###   ########.fr       */
+/*   Created: 2021/05/16 23:31:33 by mleblanc          #+#    #+#             */
+/*   Updated: 2021/05/16 23:32:40 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "libft.h"
 
-# include "do_printf.h"
-
-void	add_padding(t_pinfo *info, int *len, char c);
-
-#endif
+char	*ft_ptoa(void *ptr)
+{
+	return (ft_ptoa_base(ptr, "0123456789ABCDEF"));
+}

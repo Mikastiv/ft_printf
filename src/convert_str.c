@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:45:36 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/16 21:11:12 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/16 23:20:59 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ void	convert_str(const char **fmt, t_pinfo *info)
 		str = NULL_STR;
 	len = (int)ft_strnlen(str, (size_t)info->precision);
 	if (!(info->flags & F_LEFTALIGN))
-		add_padding(info, &len);
+		add_padding(info, &len, ' ');
 	while (*str && info->precision--)
 	{
 		info->ft_putc(*str++);
 		info->count++;
 	}
 	if (info->flags & F_LEFTALIGN)
-		add_padding(info, &len);
+		add_padding(info, &len, ' ');
 	(*fmt)++;
 }
