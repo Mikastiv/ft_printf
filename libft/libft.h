@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:39:54 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/16 23:32:05 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/18 14:39:03 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ char	*ft_itoa(int n);
 char	*ft_itoa_base(int n, const char *base);
 char	*ft_utoa(unsigned int n);
 char	*ft_utoa_base(unsigned int n, const char *base);
+char	*ft_ltoa(long n);
+char	*ft_ltoa_base(long n, const char *base);
+char	*ft_ultoa(unsigned long n);
+char	*ft_ultoa_base(unsigned long n, const char *base);
 char	*ft_ptoa(void *ptr);
 char	*ft_ptoa_base(void *ptr, const char *base);
 

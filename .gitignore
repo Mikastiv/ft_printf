@@ -5,3 +5,5 @@ libft.a
 main.c
 a.out
 pft/
+*.dSYM
+.vscode/

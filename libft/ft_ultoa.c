@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_ultoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 20:25:46 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/20 15:29:40 by mleblanc         ###   ########.fr       */
+/*   Created: 2021/05/18 14:40:17 by mleblanc          #+#    #+#             */
+/*   Updated: 2021/05/18 14:42:55 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "libft.h"
 
-# include "do_printf.h"
-
-void	add_padding(t_pinfo *info, int *len, char c);
-void	ft_putstr(char *str, t_pinfo *info);
-
-#endif
+char	*ft_ultoa(unsigned long n)
+{
+	return (ft_ultoa_base(n, "0123456789"));
+}
