@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   convert_uint.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 20:25:46 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/21 19:08:43 by mleblanc         ###   ########.fr       */
+/*   Created: 2021/05/21 18:53:26 by mleblanc          #+#    #+#             */
+/*   Updated: 2021/05/21 18:53:33 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef CONVERT_UINT_H
+# define CONVERT_UINT_H
 
 # include "do_printf.h"
 
-void	add_padding(t_pinfo *info, int *len, char c);
-void	add_num_padding(t_pinfo *info, char c);
-void	ft_putstr(char *str, t_pinfo *info);
-void	calculate_padding(t_pinfo *info, char *str);
+void	convert_uint(const char **fmt, t_pinfo *info);
 
 #endif

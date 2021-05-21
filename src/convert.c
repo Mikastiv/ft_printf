@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 14:10:20 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/18 15:27:59 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/21 19:00:33 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "convert_ptr.h"
 #include "convert_percent.h"
 #include "convert_int.h"
+#include "convert_uint.h"
 
 void	convert(const char **fmt, t_pinfo *info)
 {
@@ -29,4 +30,6 @@ void	convert(const char **fmt, t_pinfo *info)
 		convert_percent(fmt, info);
 	else if (**fmt == 'd' || **fmt == 'i')
 		convert_int(fmt, info);
+	else if (**fmt == 'u')
+		convert_uint(fmt, info);
 }
