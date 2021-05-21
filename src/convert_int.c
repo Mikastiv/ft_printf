@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:33:22 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/21 14:15:49 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/21 18:41:57 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "utils.h"
 #include <limits.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 static char	*convert_to_str(int nb)
 {
@@ -33,11 +34,13 @@ static void	add_num_padding(t_pinfo *info, char c)
 	}
 }
 
-static void	calculate_len(t_pinfo *info, int *len, int nb, char *str)
+static void	calculate_padding(t_pinfo *info, int nb, char *str)
 {
-	*len = ft_strnlen(str, INT_MAX);
-	info->width -= *len;
-	info->precision -= *len;
+	int	len;
+
+	len = ft_strnlen(str, INT_MAX);
+	info->width -= len;
+	info->precision -= len;
 	if (info->flags & F_PRECISION && info->precision > 0)
 		info->width -= info->precision;
 	if (nb < 0)
@@ -63,21 +66,24 @@ static void	print_number(t_pinfo *info, char *str, int nb, char pad_char)
 void	convert_int(const char **fmt, t_pinfo *info)
 {
 	char	pad_char;
-	int		len;
 	char	*str;
 	int		nb;
+	bool	precision_is_0;
 
 	(*fmt)++;
 	pad_char = ' ';
-	if ((info->flags & F_ZEROPAD) && !(info->flags & F_PRECISION))
+	if (info->flags & F_PRECISION)
+		info->flags &= ~F_ZEROPAD;
+	precision_is_0 = (info->flags & F_PRECISION) && (info->precision == 0);
+	if (info->flags & F_ZEROPAD)
 		pad_char = '0';
 	nb = va_arg(info->va, int);
-	if (nb == 0 && info->flags & F_PRECISION && info->precision == 0)
+	if (nb == 0 && precision_is_0)
 		add_num_padding(info, ' ');
 	str = convert_to_str(nb);
-	if (!str || (nb == 0 && info->flags & F_PRECISION && info->precision == 0))
+	if (!str || (nb == 0 && precision_is_0))
 		return ;
-	calculate_len(info, &len, nb, str);
+	calculate_padding(info, nb, str);
 	print_number(info, str, nb, pad_char);
 	free(str);
 }
