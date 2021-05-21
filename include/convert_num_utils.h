@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   convert_num_utils.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 20:25:26 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/21 19:53:33 by mleblanc         ###   ########.fr       */
+/*   Created: 2021/05/21 19:50:14 by mleblanc          #+#    #+#             */
+/*   Updated: 2021/05/21 19:56:25 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
-#include "flags.h"
+#ifndef CONVERT_NUM_UTILS_H
+# define CONVERT_NUM_UTILS_H
 
-void	add_padding(t_pinfo *info, int *len, char c)
-{
-	while ((*len)++ < info->width)
-	{
-		info->ft_putc(c);
-		info->count++;
-	}
-}
+# include "do_printf.h"
 
-void	ft_putstr(char *str, t_pinfo *info)
-{
-	while (*str)
-	{
-		info->ft_putc(*str++);
-		info->count++;
-	}
-}
+void	add_num_padding(t_pinfo *info, char c);
+void	calculate_padding(t_pinfo *info, char *str);
 
-char	get_pad_char(t_pinfo *info)
-{
-	if (info->flags & F_ZEROPAD)
-		return ('0');
-	return (' ');
-}
+#endif

@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:33:22 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/21 19:37:18 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/21 19:52:49 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "flags.h"
 #include "libft.h"
 #include "utils.h"
+#include "convert_num_utils.h"
 #include <limits.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -48,13 +49,13 @@ void	convert_int(const char **fmt, t_pinfo *info, int nb)
 	bool	precision_is_0;
 
 	(*fmt)++;
+	str = convert_to_str(nb);
 	if (info->flags & F_PRECISION)
 		info->flags &= ~F_ZEROPAD;
 	pad_char = get_pad_char(info);
 	precision_is_0 = (info->flags & F_PRECISION) && (info->precision == 0);
 	if (nb == 0 && precision_is_0)
 		add_num_padding(info, ' ');
-	str = convert_to_str(nb);
 	if (!str || (nb == 0 && precision_is_0))
 		return ;
 	calculate_padding(info, str);

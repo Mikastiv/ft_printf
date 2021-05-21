@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   convert_num_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 20:25:26 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/21 19:53:33 by mleblanc         ###   ########.fr       */
+/*   Created: 2021/05/21 19:51:18 by mleblanc          #+#    #+#             */
+/*   Updated: 2021/05/21 19:53:38 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "convert_num_utils.h"
 #include "flags.h"
+#include "libft.h"
+#include <limits.h>
 
-void	add_padding(t_pinfo *info, int *len, char c)
+void	add_num_padding(t_pinfo *info, char c)
 {
-	while ((*len)++ < info->width)
+	while (info->width-- > 0)
 	{
 		info->ft_putc(c);
 		info->count++;
 	}
 }
 
-void	ft_putstr(char *str, t_pinfo *info)
+void	calculate_padding(t_pinfo *info, char *str)
 {
-	while (*str)
-	{
-		info->ft_putc(*str++);
-		info->count++;
-	}
-}
+	int	len;
 
-char	get_pad_char(t_pinfo *info)
-{
-	if (info->flags & F_ZEROPAD)
-		return ('0');
-	return (' ');
+	len = ft_strnlen(str, INT_MAX);
+	info->width -= len;
+	info->precision -= len;
+	if (info->flags & F_PRECISION && info->precision > 0)
+		info->width -= info->precision;
 }

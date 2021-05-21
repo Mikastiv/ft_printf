@@ -6,7 +6,7 @@
 #    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 19:00:56 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/21 18:58:20 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/05/21 19:53:13 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INC			=	include
 LIBFT_INC	=	libft
 CFILES		=	ft_printf.c do_printf.c convert.c convert_char.c convert_str.c\
 				utils.c convert_ptr.c convert_percent.c convert_int.c\
-				convert_uint.c
+				convert_uint.c convert_num_utils.c
 SRCS		=	$(addprefix $(SRC)/, $(CFILES))
 OBJS		=	$(SRCS:.c=.o)
 
