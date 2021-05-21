@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:33:22 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/21 19:09:58 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/21 19:37:18 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,17 @@ static void	print_number(t_pinfo *info, char *str, int nb, char pad_char)
 		add_num_padding(info, ' ');
 }
 
-void	convert_int(const char **fmt, t_pinfo *info)
+void	convert_int(const char **fmt, t_pinfo *info, int nb)
 {
 	char	pad_char;
 	char	*str;
-	int		nb;
 	bool	precision_is_0;
 
 	(*fmt)++;
-	pad_char = ' ';
 	if (info->flags & F_PRECISION)
 		info->flags &= ~F_ZEROPAD;
+	pad_char = get_pad_char(info);
 	precision_is_0 = (info->flags & F_PRECISION) && (info->precision == 0);
-	if (info->flags & F_ZEROPAD)
-		pad_char = '0';
-	nb = va_arg(info->va, int);
 	if (nb == 0 && precision_is_0)
 		add_num_padding(info, ' ');
 	str = convert_to_str(nb);

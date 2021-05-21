@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 18:53:44 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/21 19:08:56 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/21 19:37:24 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,17 @@ static void	print_number(t_pinfo *info, char *str, char pad_char)
 		add_num_padding(info, ' ');
 }
 
-void	convert_uint(const char **fmt, t_pinfo *info)
+void	convert_uint(const char **fmt, t_pinfo *info, unsigned int nb)
 {
 	char			pad_char;
 	char			*str;
-	unsigned int	nb;
 	bool			precision_is_0;
 
 	(*fmt)++;
-	pad_char = ' ';
 	if (info->flags & F_PRECISION)
 		info->flags &= ~F_ZEROPAD;
+	pad_char = get_pad_char(info);
 	precision_is_0 = (info->flags & F_PRECISION) && (info->precision == 0);
-	if (info->flags & F_ZEROPAD)
-		pad_char = '0';
-	nb = va_arg(info->va, unsigned int);
 	if (nb == 0 && precision_is_0)
 		add_num_padding(info, ' ');
 	str = ft_utoa(nb);

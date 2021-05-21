@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 20:25:26 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/21 19:12:27 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/21 19:29:52 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,11 @@ void	calculate_padding(t_pinfo *info, char *str)
 	info->precision -= len;
 	if (info->flags & F_PRECISION && info->precision > 0)
 		info->width -= info->precision;
+}
+
+char	get_pad_char(t_pinfo *info)
+{
+	if (info->flags & F_ZEROPAD)
+		return ('0');
+	return (' ');
 }

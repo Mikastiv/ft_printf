@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 18:53:26 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/21 18:53:33 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/21 19:34:10 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "do_printf.h"
 
-void	convert_uint(const char **fmt, t_pinfo *info);
+void	convert_uint(const char **fmt, t_pinfo *info, unsigned int nb);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 14:10:20 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/21 19:00:33 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/21 19:35:12 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	convert(const char **fmt, t_pinfo *info)
 	else if (**fmt == '%')
 		convert_percent(fmt, info);
 	else if (**fmt == 'd' || **fmt == 'i')
-		convert_int(fmt, info);
+		convert_int(fmt, info, va_arg(info->va, int));
 	else if (**fmt == 'u')
-		convert_uint(fmt, info);
+		convert_uint(fmt, info, va_arg(info->va, unsigned int));
 }
