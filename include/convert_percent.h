@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_percent.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 14:15:46 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/17 15:31:32 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/22 15:49:09 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "do_printf.h"
 
-void	convert_percent(const char **fmt, t_pinfo *info);
+void	convert_percent(t_pinfo *info);
 
 #endif

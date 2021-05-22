@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 23:57:12 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/17 00:35:56 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/22 15:49:00 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-void	convert_ptr(const char **fmt, t_pinfo *info)
+void	convert_ptr(t_pinfo *info)
 {
 	void	*ptr;
 	char	*str;
@@ -41,5 +41,4 @@ void	convert_ptr(const char **fmt, t_pinfo *info)
 		add_padding(info, &len, ' ');
 	if (do_free)
 		free(str);
-	(*fmt)++;
 }

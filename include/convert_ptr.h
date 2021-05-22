@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 23:56:08 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/16 23:56:59 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/22 15:48:56 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "do_printf.h"
 
-void	convert_ptr(const char **fmt, t_pinfo *info);
+void	convert_ptr(t_pinfo *info);
 
 #endif
