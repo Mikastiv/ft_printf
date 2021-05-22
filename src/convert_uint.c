@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 18:53:44 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/21 19:52:56 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/22 15:18:19 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "libft.h"
 #include "utils.h"
 #include "convert_num_utils.h"
-#include <limits.h>
 #include <stdlib.h>
 #include <stdbool.h>
 

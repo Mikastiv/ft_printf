@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_int.c                                      :+:      :+:    :+:   */
+/*   convert_hex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 16:33:22 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/22 15:18:13 by mleblanc         ###   ########.fr       */
+/*   Created: 2021/05/22 15:10:20 by mleblanc          #+#    #+#             */
+/*   Updated: 2021/05/22 15:18:06 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "convert_int.h"
+#include "convert_hex.h"
+
 #include "flags.h"
 #include "libft.h"
 #include "utils.h"
@@ -18,21 +19,10 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-static char	*convert_to_str(int nb)
+static void	print_number(t_pinfo *info, char *str, char pad_char)
 {
-	if (nb < 0)
-		return (ft_ultoa(-((long)nb)));
-	return (ft_ultoa((unsigned long)nb));
-}
-
-static void	print_number(t_pinfo *info, char *str, int nb, char pad_char)
-{
-	if (nb < 0 && pad_char == '0')
-		ft_putstr("-", info);
 	if (!(info->flags & F_LEFTALIGN))
 		add_num_padding(info, pad_char);
-	if (nb < 0 && pad_char == ' ')
-		ft_putstr("-", info);
 	if (info->flags & F_PRECISION)
 		while (info->precision && info->precision-- > 0 && ++info->count)
 			info->ft_putc('0');
@@ -41,14 +31,16 @@ static void	print_number(t_pinfo *info, char *str, int nb, char pad_char)
 		add_num_padding(info, ' ');
 }
 
-void	convert_int(const char **fmt, t_pinfo *info, int nb)
+void	convert_hex(const char **fmt, t_pinfo *info, char *base)
 {
-	char	pad_char;
-	char	*str;
-	bool	precision_is_0;
+	unsigned int	nb;
+	char			pad_char;
+	char			*str;
+	bool			precision_is_0;
 
 	(*fmt)++;
-	str = convert_to_str(nb);
+	nb = va_arg(info->va, unsigned int);
+	str = ft_utoa_base(nb, base);
 	if (info->flags & F_PRECISION)
 		info->flags &= ~F_ZEROPAD;
 	pad_char = get_pad_char(info);
@@ -58,8 +50,6 @@ void	convert_int(const char **fmt, t_pinfo *info, int nb)
 	if (!str || (nb == 0 && precision_is_0))
 		return ;
 	calculate_padding(info, str);
-	if (nb < 0)
-		info->width--;
-	print_number(info, str, nb, pad_char);
+	print_number(info, str, pad_char);
 	free(str);
 }
