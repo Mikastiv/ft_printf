@@ -6,7 +6,7 @@
 #    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 19:00:56 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/22 15:26:34 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/05/22 16:23:45 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJS		=	$(SRCS:.c=.o)
 
 CC			=	clang
 LIBC		=	ar rcs
-CFLAGS		=	-Wall -Werror -Wextra -g
+CFLAGS		=	-Wall -Werror -Wextra
 
 RM			=	rm -rf
 CP			=	cp
