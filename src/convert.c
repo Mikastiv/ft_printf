@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 14:10:20 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/22 18:10:12 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/22 18:44:53 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,22 @@
 
 bool	convert(const char **fmt, t_pinfo *info)
 {
-	bool	success;
-
-	success = true;
 	if (**fmt == 'c' && (*fmt)++)
-		success = convert_char(info, (char)va_arg(info->va, int));
+		return (convert_char(info, (char)va_arg(info->va, int)));
 	else if (**fmt == 's' && (*fmt)++)
-		success = convert_str(info);
+		return (convert_str(info));
 	else if (**fmt == 'p' && (*fmt)++)
-		success = convert_ptr(info);
+		return (convert_ptr(info));
 	else if (**fmt == '%' && (*fmt)++)
-		success = convert_percent(info);
+		return (convert_percent(info));
 	else if ((**fmt == 'd' || **fmt == 'i') && (*fmt)++)
-		success = convert_int(info);
+		return (convert_int(info));
 	else if (**fmt == 'u' && (*fmt)++)
-		success = convert_uint(info, "0123456789");
+		return (convert_uint(info, "0123456789"));
 	else if (**fmt == 'x' && (*fmt)++)
-		success = convert_uint(info, "0123456789abcdef");
+		return (convert_uint(info, "0123456789abcdef"));
 	else if (**fmt == 'X' && (*fmt)++)
-		success = convert_uint(info, "0123456789ABCDEF");
+		return (convert_uint(info, "0123456789ABCDEF"));
 	else
-		success = convert_char(info, *((*fmt)++));
-	return (success);
+		return (convert_char(info, *((*fmt)++)));
 }
