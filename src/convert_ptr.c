@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 23:57:12 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/22 15:49:00 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/22 17:55:12 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,17 @@
 #include "utils.h"
 #include "flags.h"
 #include <stdlib.h>
-#include <stdbool.h>
 
-void	convert_ptr(t_pinfo *info)
+bool	convert_ptr(t_pinfo *info)
 {
 	void	*ptr;
 	char	*str;
 	int		len;
-	bool	do_free;
 
 	ptr = va_arg(info->va, void *);
 	str = ft_ptoa_base(ptr, "0123456789abcdef");
-	do_free = true;
 	if (!str)
-	{
-		str = "0";
-		do_free = false;
-	}
+		return (false);
 	len = (int)ft_strlen(str) + 2;
 	if (!(info->flags & F_LEFTALIGN))
 		add_padding(info, &len, ' ');
@@ -39,6 +33,6 @@ void	convert_ptr(t_pinfo *info)
 	ft_putstr(str, info);
 	if (info->flags & F_LEFTALIGN)
 		add_padding(info, &len, ' ');
-	if (do_free)
-		free(str);
+	free(str);
+	return (true);
 }

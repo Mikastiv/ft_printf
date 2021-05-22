@@ -6,12 +6,13 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 20:25:26 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/21 19:53:33 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/22 16:59:05 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "flags.h"
+#include "libft.h"
 
 void	add_padding(t_pinfo *info, int *len, char c)
 {
@@ -36,4 +37,14 @@ char	get_pad_char(t_pinfo *info)
 	if (info->flags & F_ZEROPAD)
 		return ('0');
 	return (' ');
+}
+
+int	to_int(const char **fmt)
+{
+	int	width;
+
+	width = 0;
+	while (ft_isdigit(**fmt))
+		width = width * 10 + (*((*fmt)++) - '0');
+	return (width);
 }

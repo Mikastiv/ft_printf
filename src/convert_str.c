@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:45:36 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/22 15:48:49 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/22 17:55:21 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 #define NULL_STR "(null)"
 
-void	convert_str(t_pinfo *info)
+bool	convert_str(t_pinfo *info)
 {
 	const char	*str;
 	int			len;
@@ -38,4 +38,5 @@ void	convert_str(t_pinfo *info)
 	}
 	if (info->flags & F_LEFTALIGN)
 		add_padding(info, &len, ' ');
+	return (true);
 }

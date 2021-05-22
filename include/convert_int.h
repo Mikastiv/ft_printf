@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:32:19 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/22 15:49:22 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/22 17:55:41 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define CONVERT_INT_H
 
 # include "do_printf.h"
+# include <stdbool.h>
 
-void	convert_int(t_pinfo *info);
+bool	convert_int(t_pinfo *info);
 
 #endif

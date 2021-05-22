@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 18:53:44 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/22 15:49:48 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/22 18:01:27 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "utils.h"
 #include "convert_num_utils.h"
 #include <stdlib.h>
-#include <stdbool.h>
 
 static void	print_number(t_pinfo *info, char *str, char pad_char)
 {
@@ -27,10 +26,10 @@ static void	print_number(t_pinfo *info, char *str, char pad_char)
 			info->ft_putc('0');
 	ft_putstr(str, info);
 	if (info->flags & F_LEFTALIGN)
-		add_num_padding(info, ' ');
+		add_num_padding(info, pad_char);
 }
 
-void	convert_uint(t_pinfo *info, char *base)
+bool	convert_uint(t_pinfo *info, char *base)
 {
 	unsigned int	nb;
 	char			pad_char;
@@ -44,10 +43,14 @@ void	convert_uint(t_pinfo *info, char *base)
 	pad_char = get_pad_char(info);
 	precision_is_0 = (info->flags & F_PRECISION) && (info->precision == 0);
 	if (nb == 0 && precision_is_0)
+	{
 		add_num_padding(info, ' ');
-	if (!str || (nb == 0 && precision_is_0))
-		return ;
+		return (true);
+	}
+	if (!str)
+		return (false);
 	calculate_padding(info, str);
 	print_number(info, str, pad_char);
 	free(str);
+	return (true);
 }

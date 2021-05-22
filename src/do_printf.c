@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/22 15:46:03 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/22 18:08:28 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,8 @@
 #include "flags.h"
 #include "libft.h"
 #include "convert.h"
+#include "utils.h"
 #include <stdbool.h>
-
-static int	to_int(const char **fmt)
-{
-	int	width;
-
-	width = 0;
-	while (ft_isdigit(**fmt))
-		width = width * 10 + (*((*fmt)++) - '0');
-	return (width);
-}
 
 static void	get_flags(const char **fmt, t_pinfo *info)
 {
@@ -56,6 +47,8 @@ static void	get_width(const char **fmt, t_pinfo *info)
 		if (arg < 0)
 		{
 			info->flags |= F_LEFTALIGN;
+			if (info->flags & F_LEFTALIGN)
+				info->flags &= ~F_ZEROPAD;
 			info->width = -arg;
 		}
 		else
@@ -85,6 +78,9 @@ static void	get_precision(const char **fmt, t_pinfo *info)
 
 int	do_printf(const char *fmt, t_pinfo *info)
 {
+	bool	error;
+
+	error = false;
 	info->count = 0;
 	while (*fmt)
 	{
@@ -98,9 +94,10 @@ int	do_printf(const char *fmt, t_pinfo *info)
 		get_flags(&fmt, info);
 		get_width(&fmt, info);
 		get_precision(&fmt, info);
-		convert(&fmt, info);
+		if (!convert(&fmt, info))
+			error = true;
 	}
-	if (info->count < 0)
+	if (info->count < 0 || error)
 		return (-1);
 	return (info->count);
 }

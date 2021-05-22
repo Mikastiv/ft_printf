@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 18:53:26 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/22 15:49:42 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/22 17:55:56 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define CONVERT_UINT_H
 
 # include "do_printf.h"
+# include <stdbool.h>
 
-void	convert_uint(t_pinfo *info, char *base);
+bool	convert_uint(t_pinfo *info, char *base);
 
 #endif
