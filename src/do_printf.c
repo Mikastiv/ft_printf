@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/16 23:51:41 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/22 15:46:03 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,7 @@ int	do_printf(const char *fmt, t_pinfo *info)
 		get_precision(&fmt, info);
 		convert(&fmt, info);
 	}
+	if (info->count < 0)
+		return (-1);
 	return (info->count);
 }
