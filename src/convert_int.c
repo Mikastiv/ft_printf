@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:33:22 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/23 12:47:54 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/23 12:56:04 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static char	*convert_to_str(int nb)
 
 static void	print_number(t_pinfo *info, char *str, int nb, char pad_char)
 {
+	if (nb < 0)
+		info->width--;
 	if (nb < 0 && pad_char == '0')
 		ft_putstr("-", info);
 	if (!(info->flags & F_LEFTALIGN))
@@ -62,8 +64,6 @@ bool	convert_int(t_pinfo *info)
 	if (!str)
 		return (false);
 	calculate_padding(info, str);
-	if (nb < 0)
-		info->width--;
 	print_number(info, str, nb, pad_char);
 	free(str);
 	return (true);
