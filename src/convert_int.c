@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:33:22 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/22 18:01:08 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/23 12:47:54 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 static char	*convert_to_str(int nb)
 {
 	if (nb < 0)
-		return (ft_ultoa(-((long)nb)));
-	return (ft_ultoa((unsigned long)nb));
+		return (ft_utoa((unsigned int)(0 - nb)));
+	return (ft_utoa((unsigned int)nb));
 }
 
 static void	print_number(t_pinfo *info, char *str, int nb, char pad_char)
