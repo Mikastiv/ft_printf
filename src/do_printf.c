@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/23 12:55:42 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/23 19:00:17 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ int	do_printf(const char *fmt, t_pinfo *info)
 		get_length(&fmt, info);
 		if (!convert(&fmt, info) || info->count < 0)
 			error = true;
+		if (error)
+			break ;
 	}
 	if (error)
 		return (-1);
