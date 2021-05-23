@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/22 18:08:28 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/22 21:17:01 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ int	do_printf(const char *fmt, t_pinfo *info)
 		get_flags(&fmt, info);
 		get_width(&fmt, info);
 		get_precision(&fmt, info);
-		if (!convert(&fmt, info))
+		if (!convert(&fmt, info) || info->count < 0)
 			error = true;
 	}
-	if (info->count < 0 || error)
+	if (error)
 		return (-1);
 	return (info->count);
 }
