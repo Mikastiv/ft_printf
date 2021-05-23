@@ -6,7 +6,7 @@
 #    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 19:00:56 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/22 18:30:47 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/05/23 13:23:47 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,8 @@ norme:
 
 all:		$(NAME)
 
+bonus:		all
+
 clean:
 			$(MAKELIBFT) clean
 			$(RM) $(OBJS)
@@ -57,4 +59,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re norme
+.PHONY:		all clean fclean re norme bonus

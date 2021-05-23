@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:33:22 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/23 12:56:04 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/23 13:20:05 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,31 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-static char	*convert_to_str(int nb)
+static long	get_number(t_pinfo *info)
 {
-	if (nb < 0)
-		return (ft_utoa((unsigned int)(0 - nb)));
-	return (ft_utoa((unsigned int)nb));
+	if (info->flags & F_LONG)
+		return (va_arg(info->va, long));
+	else
+		return ((int)va_arg(info->va, int));
 }
 
-static void	print_number(t_pinfo *info, char *str, int nb, char pad_char)
+static char	*convert_to_str(long nb, t_pinfo *info)
+{
+	if (info->flags & F_LONG)
+	{
+		if (nb < 0)
+			return (ft_ultoa((unsigned long)(0 - nb)));
+		return (ft_ultoa((unsigned long)nb));
+	}
+	else
+	{
+		if ((int)nb < 0)
+			return (ft_utoa((unsigned int)(0 - (int)nb)));
+		return (ft_utoa((unsigned int)((int)nb)));
+	}
+}
+
+static void	print_number(t_pinfo *info, char *str, long nb, char pad_char)
 {
 	if (nb < 0)
 		info->width--;
@@ -45,13 +62,13 @@ static void	print_number(t_pinfo *info, char *str, int nb, char pad_char)
 
 bool	convert_int(t_pinfo *info)
 {
-	int		nb;
+	long	nb;
 	char	pad_char;
 	char	*str;
 	bool	precision_is_0;
 
-	nb = va_arg(info->va, int);
-	str = convert_to_str(nb);
+	nb = get_number(info);
+	str = convert_to_str(nb, info);
 	if (info->flags & F_PRECISION)
 		info->flags &= ~F_ZEROPAD;
 	pad_char = get_pad_char(info);

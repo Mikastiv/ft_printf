@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 18:53:44 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/22 18:01:27 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/23 13:33:32 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 #include "utils.h"
 #include "convert_num_utils.h"
 #include <stdlib.h>
+
+static unsigned long	get_number(t_pinfo *info)
+{
+	if (info->flags & F_LONG)
+		return (va_arg(info->va, unsigned long));
+	else
+		return ((unsigned long)va_arg(info->va, unsigned int));
+}
 
 static void	print_number(t_pinfo *info, char *str, char pad_char)
 {
@@ -31,13 +39,13 @@ static void	print_number(t_pinfo *info, char *str, char pad_char)
 
 bool	convert_uint(t_pinfo *info, char *base)
 {
-	unsigned int	nb;
+	unsigned long	nb;
 	char			pad_char;
 	char			*str;
 	bool			precision_is_0;
 
-	nb = va_arg(info->va, unsigned int);
-	str = ft_utoa_base(nb, base);
+	nb = get_number(info);
+	str = ft_ultoa_base(nb, base);
 	if (info->flags & F_PRECISION)
 		info->flags &= ~F_ZEROPAD;
 	pad_char = get_pad_char(info);
