@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 18:53:44 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/24 15:19:13 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/24 15:31:38 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,16 @@ static unsigned long	get_number(t_pinfo *info)
 
 static void	print_number(t_pinfo *info, char *str, char pad_char, char *prefix)
 {
-	if (info->flags & F_HASH)
+	bool	num_is_0;
+
+	num_is_0 = ft_strncmp(str, "0", 8);
+	if (info->flags & F_HASH && num_is_0)
 		info->width -= ft_strnlen(prefix, 2);
-	if ((info->flags & F_HASH) && (pad_char == '0'))
+	if (info->flags & F_HASH && pad_char == '0' && num_is_0)
 		ft_putstr(prefix, info);
 	if (!(info->flags & F_LEFTALIGN))
 		add_num_padding(info, pad_char);
-	if (info->flags & F_HASH && pad_char == ' ')
+	if (info->flags & F_HASH && pad_char == ' ' && num_is_0)
 		ft_putstr(prefix, info);
 	if (info->flags & F_PRECISION)
 		while (info->precision && info->precision-- > 0 && ++info->count)
