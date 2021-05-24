@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/24 14:55:18 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/24 15:37:58 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ static void	get_flags(const char **fmt, t_pinfo *info)
 	}
 	if (info->flags & F_LEFTALIGN)
 		info->flags &= ~F_ZEROPAD;
-	if (info->flags & F_PLUS)
-		info->flags &= ~F_SPACE;
 }
 
 static void	get_width(const char **fmt, t_pinfo *info)

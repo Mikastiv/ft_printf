@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_int.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:33:22 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/23 13:20:05 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/24 15:37:37 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@ static long	get_number(t_pinfo *info)
 		return ((int)va_arg(info->va, int));
 }
 
+static char	*get_prefix(t_pinfo *info, long nb)
+{
+	if (nb < 0)
+		return ("-");
+	else if (info->flags & F_PLUS)
+		return ("+");
+	else if (info->flags & F_SPACE)
+		return (" ");
+	else
+		return (NULL);
+}
+
 static char	*convert_to_str(long nb, t_pinfo *info)
 {
 	if (info->flags & F_LONG)
@@ -42,16 +54,16 @@ static char	*convert_to_str(long nb, t_pinfo *info)
 	}
 }
 
-static void	print_number(t_pinfo *info, char *str, long nb, char pad_char)
+static void	print_number(t_pinfo *info, char *str, char *prefix, char pad_char)
 {
-	if (nb < 0)
+	if (prefix)
 		info->width--;
-	if (nb < 0 && pad_char == '0')
-		ft_putstr("-", info);
+	if (prefix && pad_char == '0')
+		ft_putstr(prefix, info);
 	if (!(info->flags & F_LEFTALIGN))
 		add_num_padding(info, pad_char);
-	if (nb < 0 && pad_char == ' ')
-		ft_putstr("-", info);
+	if (prefix && pad_char == ' ')
+		ft_putstr(prefix, info);
 	if (info->flags & F_PRECISION)
 		while (info->precision && info->precision-- > 0 && ++info->count)
 			info->ft_putc('0');
@@ -65,6 +77,7 @@ bool	convert_int(t_pinfo *info)
 	long	nb;
 	char	pad_char;
 	char	*str;
+	char	*prefix;
 	bool	precision_is_0;
 
 	nb = get_number(info);
@@ -72,6 +85,7 @@ bool	convert_int(t_pinfo *info)
 	if (info->flags & F_PRECISION)
 		info->flags &= ~F_ZEROPAD;
 	pad_char = get_pad_char(info);
+	prefix = get_prefix(info, nb);
 	precision_is_0 = (info->flags & F_PRECISION) && (info->precision == 0);
 	if (nb == 0 && precision_is_0)
 	{
@@ -81,7 +95,7 @@ bool	convert_int(t_pinfo *info)
 	if (!str)
 		return (false);
 	calculate_padding(info, str);
-	print_number(info, str, nb, pad_char);
+	print_number(info, str, prefix, pad_char);
 	free(str);
 	return (true);
 }
