@@ -6,7 +6,7 @@
 #    By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 19:00:56 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/24 13:55:06 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/05/24 15:52:42 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ CP			=	cp
 NORMINETTE	=	norminette
 
 
-$(SRC)/%.o:	$(SRC)/%.c
+%.o:		%.c
 			$(CC) $(CFLAGS) -c $< -o $@ -I$(INC) -I$(LIBFT_INC)
 
 $(NAME):	$(OBJS)
