@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
+#    By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 19:00:56 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/23 13:23:47 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/05/24 13:55:06 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ $(NAME):	$(OBJS)
 
 norme:
 			$(MAKELIBFT) norme
-			$(NORMINETTE) $(SRCS) $(addprefix $(INC)/, $(HFILES))
+			$(NORMINETTE) $(SRCS) $(addprefix $(INC)/, $(HFILES)) include/flags.h
 
 all:		$(NAME)
 

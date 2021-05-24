@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_uint.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 18:53:44 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/23 13:33:32 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/24 15:19:13 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,16 @@ static unsigned long	get_number(t_pinfo *info)
 		return ((unsigned long)va_arg(info->va, unsigned int));
 }
 
-static void	print_number(t_pinfo *info, char *str, char pad_char)
+static void	print_number(t_pinfo *info, char *str, char pad_char, char *prefix)
 {
+	if (info->flags & F_HASH)
+		info->width -= ft_strnlen(prefix, 2);
+	if ((info->flags & F_HASH) && (pad_char == '0'))
+		ft_putstr(prefix, info);
 	if (!(info->flags & F_LEFTALIGN))
 		add_num_padding(info, pad_char);
+	if (info->flags & F_HASH && pad_char == ' ')
+		ft_putstr(prefix, info);
 	if (info->flags & F_PRECISION)
 		while (info->precision && info->precision-- > 0 && ++info->count)
 			info->ft_putc('0');
@@ -37,7 +43,7 @@ static void	print_number(t_pinfo *info, char *str, char pad_char)
 		add_num_padding(info, pad_char);
 }
 
-bool	convert_uint(t_pinfo *info, char *base)
+bool	convert_uint(t_pinfo *info, char *base, char *prefix)
 {
 	unsigned long	nb;
 	char			pad_char;
@@ -58,7 +64,7 @@ bool	convert_uint(t_pinfo *info, char *base)
 	if (!str)
 		return (false);
 	calculate_padding(info, str);
-	print_number(info, str, pad_char);
+	print_number(info, str, pad_char, prefix);
 	free(str);
 	return (true);
 }
