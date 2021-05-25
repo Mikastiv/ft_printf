@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+         #
+#    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 19:00:56 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/24 15:52:42 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/05/24 22:09:20 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

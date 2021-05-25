@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_uint.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 18:53:44 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/24 15:31:38 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/24 22:08:04 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	print_number(t_pinfo *info, char *str, char pad_char, char *prefix)
 {
 	bool	num_is_0;
 
-	num_is_0 = ft_strncmp(str, "0", 8);
+	num_is_0 = ft_strncmp(str, "0", 2);
 	if (info->flags & F_HASH && num_is_0)
 		info->width -= ft_strnlen(prefix, 2);
 	if (info->flags & F_HASH && pad_char == '0' && num_is_0)

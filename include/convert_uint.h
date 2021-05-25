@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_uint.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 18:53:26 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/24 15:05:55 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/24 22:07:26 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

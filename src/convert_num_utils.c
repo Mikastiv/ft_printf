@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 19:51:18 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/21 19:53:38 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/24 21:44:25 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,33 @@ void	add_num_padding(t_pinfo *info, char c)
 	while (info->width-- > 0)
 	{
 		info->ft_putc(c);
+		info->count++;
+	}
+}
+
+void	add_num_padding_sign(t_pinfo *info, char c, char *prefix)
+{
+	int	cmp;
+
+	if (prefix)
+		cmp = ft_strncmp(prefix, "+", 1);
+	else
+		cmp = 1;
+	if (cmp == 0)
+		info->width--;
+	if (info->flags & F_LEFTALIGN && cmp == 0)
+	{
+		info->ft_putc(*prefix);
+		info->count++;
+	}
+	while (info->width-- > 0)
+	{
+		info->ft_putc(c);
+		info->count++;
+	}
+	if (!(info->flags & F_LEFTALIGN) && cmp == 0)
+	{
+		info->ft_putc(*prefix);
 		info->count++;
 	}
 }
