@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 14:26:13 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/25 01:34:44 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/25 19:19:18 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "flags.h"
 #include "utils.h"
 
-bool	convert_char(t_pinfo *info, unsigned char c)
+bool	convert_char(t_pinfo *info, wint_t c)
 {
 	int		padding;
 	char	pad_char;
@@ -23,8 +23,10 @@ bool	convert_char(t_pinfo *info, unsigned char c)
 	padding = 1;
 	if (!(info->flags & F_LEFTALIGN))
 		add_padding(info, &padding, pad_char);
-	info->ft_putc(c);
-	info->count++;
+	if (info->flags & F_LONG)
+		info->count += info->ft_putwc(c);
+	else
+		info->count += info->ft_putc((unsigned char)c);
 	if (info->flags & F_LEFTALIGN)
 		add_padding(info, &padding, pad_char);
 	return (true);
