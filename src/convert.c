@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 14:10:20 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/24 22:06:58 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/25 00:29:49 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 bool	convert(const char **fmt, t_pinfo *info)
 {
 	if (**fmt == 'c' && (*fmt)++)
-		return (convert_char(info, (char)va_arg(info->va, int)));
+		return (convert_char(info, va_arg(info->va, unsigned int)));
 	else if (**fmt == 's' && (*fmt)++)
 		return (convert_str(info));
 	else if (**fmt == 'p' && (*fmt)++)
