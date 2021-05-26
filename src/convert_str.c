@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:45:36 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/25 21:48:43 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/25 22:07:43 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,17 @@
 #include "flags.h"
 #include "libft.h"
 #include "utils.h"
-#include "convert_num_utils.h"
 #include <limits.h>
 #include <wchar.h>
 
 #define NULL_STR "(null)"
 #define NULL_WSTR L"(null)"
 
-static size_t	ft_wstrnlen(const wchar_t *s, size_t maxlen)
-{
-	size_t	len;
-
-	len = 0;
-	while (len < maxlen)
-	{
-		if (!s[len])
-			break ;
-		len++;
-	}
-	return (len);
-}
-
-static int	ft_wcharlen(wint_t c)
-{
-	if (c > 0xFFFF)
-		return (4);
-	else if (c > 0x7FF)
-		return (3);
-	else if (c > 0x7F)
-		return (2);
-	else
-		return (1);
-}
-
 static int	extra_space(const wchar_t *s, int precision, bool has_prec_flag)
 {
-	while (has_prec_flag && *s && ft_wcharlen(*s) <= precision)
+	while (has_prec_flag && *s && (int)ft_wchar_size(*s) <= precision)
 	{
-		precision -= ft_wcharlen(*s);
+		precision -= (int)ft_wchar_size(*s);
 		s++;
 	}
 	if (has_prec_flag)
@@ -75,9 +48,9 @@ static bool	convert_wstr(t_pinfo *info)
 	if (!(info->flags & F_LEFTALIGN))
 		while (extra--)
 			info->count += info->ft_putc(' ');
-	while (*str && ft_wcharlen(*str) <= info->precision)
+	while (*str && (int)ft_wchar_size(*str) <= info->precision)
 	{
-		info->precision -= ft_wcharlen(*str);
+		info->precision -= ft_wchar_size(*str);
 		info->count += info->ft_putwc(*str++);
 	}
 	if (info->flags & F_LEFTALIGN)

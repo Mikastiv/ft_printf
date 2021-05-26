@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_wstrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/06 21:22:14 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/25 22:11:53 by mleblanc         ###   ########.fr       */
+/*   Created: 2021/05/25 21:54:10 by mleblanc          #+#    #+#             */
+/*   Updated: 2021/05/25 21:54:45 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
+#include <wchar.h>
 
-void	ft_putstr_fd(const char *s, int fd)
+size_t	ft_wstrlen(const wchar_t *s)
 {
-	write(fd, s, ft_strlen(s));
+	size_t	len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
