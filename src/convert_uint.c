@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_uint.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 18:53:44 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/26 14:26:35 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/26 19:51:42 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,32 @@
 #include "convert_num_utils.h"
 #include <stdlib.h>
 
-static unsigned long	get_number(t_pinfo *info)
+static unsigned long long	get_number(t_pinfo *info)
 {
-	if (info->flags & F_LONG)
-		return (va_arg(info->va, unsigned long));
+	if (info->flags & F_LONG_LONG)
+		return (va_arg(info->va, long long));
+	else if (info->flags & F_LONG)
+		return ((unsigned long)va_arg(info->va, long));
+	else if (info->flags & F_HALF_HALF)
+		return ((unsigned char)va_arg(info->va, int));
+	else if (info->flags & F_HALF)
+		return ((unsigned short)va_arg(info->va, int));
 	else
-		return ((unsigned long)va_arg(info->va, unsigned int));
+		return ((unsigned int)va_arg(info->va, int));
 }
 
 static void	print_number(t_pinfo *info, char *str, char pad_char, char *prefix)
 {
 	bool	num_is_0;
 
-	num_is_0 = ft_strncmp(str, "0", 2);
-	if (info->flags & F_HASH && num_is_0)
+	num_is_0 = ft_strncmp(str, "0", 2) == 0;
+	if (info->flags & F_HASH && !num_is_0)
 		info->width -= ft_strnlen(prefix, 2);
-	if (info->flags & F_HASH && pad_char == '0' && num_is_0)
+	if (info->flags & F_HASH && pad_char == '0' && !num_is_0)
 		ft_putstr(prefix, info);
 	if (!(info->flags & F_LEFTALIGN))
 		add_num_padding(info, pad_char);
-	if (info->flags & F_HASH && pad_char == ' ' && num_is_0)
+	if (info->flags & F_HASH && pad_char == ' ' && !num_is_0)
 		ft_putstr(prefix, info);
 	if (info->flags & F_PRECISION)
 		while (info->precision && info->precision-- > 0 && ++info->count)
@@ -48,10 +54,10 @@ static void	print_number(t_pinfo *info, char *str, char pad_char, char *prefix)
 
 bool	convert_uint(t_pinfo *info, char *base, char *prefix)
 {
-	unsigned long	nb;
-	char			pad_char;
-	char			*str;
-	bool			precision_is_0;
+	unsigned long long	nb;
+	char				pad_char;
+	char				*str;
+	bool				precision_is_0;
 
 	nb = get_number(info);
 	if (info->flags & F_PRECISION)
@@ -63,7 +69,7 @@ bool	convert_uint(t_pinfo *info, char *base, char *prefix)
 		add_num_padding(info, ' ');
 		return (true);
 	}
-	str = ft_ultoa_base(nb, base);
+	str = ft_ulltoa_base(nb, base);
 	if (!str)
 		return (false);
 	calculate_padding(info, str);

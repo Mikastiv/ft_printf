@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/24 15:37:58 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/26 19:38:53 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,21 @@ static void	get_length(const char **fmt, t_pinfo *info)
 	{
 		info->flags |= F_LONG;
 		(*fmt)++;
+		if (**fmt == 'l')
+		{
+			info->flags |= F_LONG_LONG;
+			(*fmt)++;
+		}
+	}
+	else if (**fmt == 'h')
+	{
+		info->flags |= F_HALF;
+		(*fmt)++;
+		if (**fmt == 'h')
+		{
+			info->flags |= F_HALF_HALF;
+			(*fmt)++;
+		}
 	}
 }
 
@@ -110,12 +125,12 @@ int	do_printf(const char *fmt, t_pinfo *info)
 		get_width(&fmt, info);
 		get_precision(&fmt, info);
 		get_length(&fmt, info);
-		if (!convert(&fmt, info) || info->count < 0)
+		if (!convert(&fmt, info) || (int)info->count < 0)
 			error = true;
 		if (error)
 			break ;
 	}
 	if (error)
 		return (-1);
-	return (info->count);
+	return ((int)info->count);
 }

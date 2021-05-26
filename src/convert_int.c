@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_int.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:33:22 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/26 14:26:21 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/26 18:59:42 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,21 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-static long	get_number(t_pinfo *info)
+static long long	get_number(t_pinfo *info)
 {
-	if (info->flags & F_LONG)
-		return (va_arg(info->va, long));
+	if (info->flags & F_LONG_LONG)
+		return ((long long)va_arg(info->va, long long));
+	else if (info->flags & F_LONG)
+		return ((long)va_arg(info->va, long));
+	else if (info->flags & F_HALF_HALF)
+		return ((char)va_arg(info->va, int));
+	else if (info->flags & F_HALF)
+		return ((short)va_arg(info->va, int));
 	else
 		return ((int)va_arg(info->va, int));
 }
 
-static char	*get_prefix(t_pinfo *info, long nb)
+static char	*get_prefix(t_pinfo *info, long long nb)
 {
 	if (nb < 0)
 		return ("-");
@@ -38,20 +44,28 @@ static char	*get_prefix(t_pinfo *info, long nb)
 		return (NULL);
 }
 
-static char	*convert_to_str(long nb, t_pinfo *info)
+static char	*convert_to_str(long long nb, t_pinfo *info)
 {
-	if (info->flags & F_LONG)
-	{
-		if (nb < 0)
-			return (ft_ultoa((unsigned long)(0 - nb)));
-		return (ft_ultoa((unsigned long)nb));
-	}
+	if (info->flags & F_LONG_LONG && nb < 0)
+		return (ft_ulltoa((unsigned long long)(0 - nb)));
+	else if (info->flags & F_LONG_LONG)
+		return (ft_ulltoa((unsigned long long)(nb)));
+	else if (info->flags & F_LONG && (long)nb < 0)
+		return (ft_ultoa((unsigned long)(0 - (long)nb)));
+	else if (info->flags & F_LONG)
+		return (ft_ultoa((unsigned long)((long)nb)));
+	else if (info->flags & F_HALF_HALF && (char)nb < 0)
+		return (ft_utoa((unsigned int)(0 - (char)nb)));
+	else if (info->flags & F_HALF_HALF)
+		return (ft_utoa((unsigned int)((char)nb)));
+	else if (info->flags & F_HALF && (short)nb < 0)
+		return (ft_utoa((unsigned int)(0 - (short)nb)));
+	else if (info->flags & F_HALF)
+		return (ft_utoa((unsigned int)((short)nb)));
+	else if ((int)nb < 0)
+		return (ft_utoa((unsigned int)(0 - (int)nb)));
 	else
-	{
-		if ((int)nb < 0)
-			return (ft_utoa((unsigned int)(0 - (int)nb)));
 		return (ft_utoa((unsigned int)((int)nb)));
-	}
 }
 
 static void	print_number(t_pinfo *info, char *str, char *prefix, char pad_char)
@@ -74,11 +88,11 @@ static void	print_number(t_pinfo *info, char *str, char *prefix, char pad_char)
 
 bool	convert_int(t_pinfo *info)
 {
-	long	nb;
-	char	pad_char;
-	char	*str;
-	char	*prefix;
-	bool	precision_is_0;
+	long long	nb;
+	char		pad_char;
+	char		*str;
+	char		*prefix;
+	bool		precision_is_0;
 
 	nb = get_number(info);
 	if (info->flags & F_PRECISION)
