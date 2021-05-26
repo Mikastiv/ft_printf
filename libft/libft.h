@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:39:54 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/25 22:19:57 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/26 00:09:33 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char	*ft_ptoa_base(void *ptr, const char *base);
 size_t	ft_strlen(const char *s);
 size_t	ft_strnlen(const char *s, size_t maxlen);
 size_t	ft_wchar_size(wint_t c);
+size_t	ft_wstr_size(const wchar_t *s);
 size_t	ft_wstrlen(const wchar_t *s);
 size_t	ft_wstrnlen(const wchar_t *s, size_t maxlen);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);

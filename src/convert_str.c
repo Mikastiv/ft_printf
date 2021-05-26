@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:45:36 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/25 23:47:29 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/26 00:27:12 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,31 @@
 
 static int	wstr_size(const wchar_t *s, int prec, int extra, bool has_prec)
 {
-	int	size;
-	int	n;
+	size_t	size;
 
-	size = 0;
-	n = prec;
-	while (*s && n-- > 0)
-	{
-		size += ft_wchar_size((wint_t)(*s));
-		s++;
-	}
-	if (size < 0)
+	size = ft_wstr_size(s);
+	if (size > INT_MAX)
 		size = INT_MAX - extra;
-	size -= extra;
-	if (has_prec)
-		if (prec < size)
-			return (prec);
+	else
+		size -= extra;
+	if (has_prec && prec < (int)size)
+		return (prec);
 	return (size);
 }
 
 static int	extra_space(const wchar_t *s, int precision, bool has_prec_flag)
 {
+	int	prec;
+	int	size;
+
+	prec = precision;
+	size = ft_wstr_size(s);
 	while (has_prec_flag && *s && (int)ft_wchar_size(*s) <= precision)
 	{
 		precision -= (int)ft_wchar_size(*s);
 		s++;
 	}
-	if (has_prec_flag)
+	if (has_prec_flag && prec < size)
 		return (precision);
 	return (0);
 }
