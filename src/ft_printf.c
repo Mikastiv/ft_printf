@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:07:16 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/25 19:39:06 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/25 20:35:48 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ static int	ft_putchar(unsigned char c)
 
 static void	get_wchar_info(wint_t c, t_wchar_info *wchar_info)
 {
-	if (c >= 0xFFFF)
+	if (c > 0xFFFF)
 	{
 		wchar_info->header = 0xF0;
 		wchar_info->shift = 18;
 		wchar_info->size = 4;
 	}
-	else if (c >= 0x7FF)
+	else if (c > 0x7FF)
 	{
 		wchar_info->header = 0xE0;
 		wchar_info->shift = 12;
 		wchar_info->size = 3;
 	}
-	else if (c >= 0x7F)
+	else if (c > 0x7F)
 	{
 		wchar_info->header = 0xC0;
 		wchar_info->shift = 6;
@@ -50,11 +50,11 @@ static void	get_wchar_info(wint_t c, t_wchar_info *wchar_info)
 
 static unsigned int	get_wchar_mask(wint_t c)
 {
-	if (c >= 0xFFFF)
+	if (c > 0xFFFF)
 		return (0x07);
-	if (c >= 0x7FF)
+	if (c > 0x7FF)
 		return (0x0F);
-	if (c >= 0x7F)
+	if (c > 0x7F)
 		return (0x1F);
 	return (0x00);
 }
