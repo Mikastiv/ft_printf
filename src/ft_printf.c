@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:07:16 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/25 20:35:48 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/25 22:36:29 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "libft.h"
 #include <unistd.h>
 
-static int	ft_putchar(unsigned char c)
+static int	ft_putchar(char c)
 {
-	write(1, &c, sizeof(unsigned char));
-	return (sizeof(unsigned char));
+	write(1, &c, sizeof(char));
+	return (sizeof(char));
 }
 
 static void	get_wchar_info(wint_t c, t_wchar_info *wchar_info)
@@ -66,7 +66,7 @@ static int	ft_putwchar(wint_t c)
 	get_wchar_info(c, &info);
 	info.mask = get_wchar_mask(c);
 	if (info.size == 1)
-		ft_putchar((unsigned char)c);
+		ft_putchar((char)c);
 	else
 	{
 		ft_putchar(info.header | (((c >> info.shift) & info.mask)));

@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:37:02 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/25 19:37:27 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/25 22:35:59 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_pinfo
 	int				width;
 	int				precision;
 	int				count;
-	int				(*ft_putc)(unsigned char);
+	int				(*ft_putc)(char);
 	int				(*ft_putwc)(wint_t);
 }	t_pinfo;
 
