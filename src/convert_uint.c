@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_uint.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 18:53:44 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/24 22:08:04 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/26 14:26:35 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ bool	convert_uint(t_pinfo *info, char *base, char *prefix)
 	bool			precision_is_0;
 
 	nb = get_number(info);
-	str = ft_ultoa_base(nb, base);
 	if (info->flags & F_PRECISION)
 		info->flags &= ~F_ZEROPAD;
 	pad_char = get_pad_char(info);
@@ -64,6 +63,7 @@ bool	convert_uint(t_pinfo *info, char *base, char *prefix)
 		add_num_padding(info, ' ');
 		return (true);
 	}
+	str = ft_ultoa_base(nb, base);
 	if (!str)
 		return (false);
 	calculate_padding(info, str);

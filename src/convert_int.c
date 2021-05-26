@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_int.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:33:22 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/24 21:30:02 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/26 14:26:21 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ bool	convert_int(t_pinfo *info)
 	bool	precision_is_0;
 
 	nb = get_number(info);
-	str = convert_to_str(nb, info);
 	if (info->flags & F_PRECISION)
 		info->flags &= ~F_ZEROPAD;
 	pad_char = get_pad_char(info);
@@ -92,6 +91,7 @@ bool	convert_int(t_pinfo *info)
 		add_num_padding_sign(info, ' ', prefix);
 		return (true);
 	}
+	str = convert_to_str(nb, info);
 	if (!str)
 		return (false);
 	calculate_padding(info, str);
