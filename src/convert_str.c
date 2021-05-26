@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_str.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:45:36 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/26 00:27:12 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/26 14:18:31 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static bool	convert_wstr(t_pinfo *info)
 	if (!(info->flags & F_LEFTALIGN))
 		add_padding(info, len, ' ');
 	if (!(info->flags & F_LEFTALIGN))
-		while (extra--)
+		while (extra-- > 0 && info->width > len)
 			info->count += info->ft_putc(' ');
 	while (*str && (int)ft_wchar_size(*str) <= info->precision)
 	{
@@ -75,7 +75,7 @@ static bool	convert_wstr(t_pinfo *info)
 	if (info->flags & F_LEFTALIGN)
 		add_padding(info, len, ' ');
 	if (info->flags & F_LEFTALIGN)
-		while (extra--)
+		while (extra-- > 0 && info->width > len)
 			info->count += info->ft_putc(' ');
 	return (true);
 }

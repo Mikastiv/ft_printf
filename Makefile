@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
+#    By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 19:00:56 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/25 23:59:55 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/05/26 13:58:01 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJS		=	$(SRCS:.c=.o)
 
 CC			=	clang
 LIBC		=	ar rcs
-CFLAGS		=	-Wall -Werror -Wextra -g
+CFLAGS		=	-Wall -Werror -Wextra
 
 RM			=	rm -rf
 CP			=	cp
