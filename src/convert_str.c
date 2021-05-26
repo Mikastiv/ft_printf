@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:45:36 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/25 23:01:09 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/25 23:47:29 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,27 @@
 
 #define NULL_STR "(null)"
 #define NULL_WSTR L"(null)"
+
+static int	wstr_size(const wchar_t *s, int prec, int extra, bool has_prec)
+{
+	int	size;
+	int	n;
+
+	size = 0;
+	n = prec;
+	while (*s && n-- > 0)
+	{
+		size += ft_wchar_size((wint_t)(*s));
+		s++;
+	}
+	if (size < 0)
+		size = INT_MAX - extra;
+	size -= extra;
+	if (has_prec)
+		if (prec < size)
+			return (prec);
+	return (size);
+}
 
 static int	extra_space(const wchar_t *s, int precision, bool has_prec_flag)
 {
@@ -41,8 +62,8 @@ static bool	convert_wstr(t_pinfo *info)
 	str = va_arg(info->va, wchar_t *);
 	if (!str)
 		str = NULL_WSTR;
-	len = ft_wstrnlen(str, (size_t)info->precision);
 	extra = extra_space(str, info->precision, info->flags & F_PRECISION);
+	len = wstr_size(str, info->precision, extra, info->flags & F_PRECISION);
 	if (!(info->flags & F_LEFTALIGN))
 		add_padding(info, len, ' ');
 	if (!(info->flags & F_LEFTALIGN))
