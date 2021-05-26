@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:45:36 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/25 22:07:43 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/25 23:01:09 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static bool	convert_wstr(t_pinfo *info)
 	len = ft_wstrnlen(str, (size_t)info->precision);
 	extra = extra_space(str, info->precision, info->flags & F_PRECISION);
 	if (!(info->flags & F_LEFTALIGN))
-		add_padding(info, &len, ' ');
+		add_padding(info, len, ' ');
 	if (!(info->flags & F_LEFTALIGN))
 		while (extra--)
 			info->count += info->ft_putc(' ');
@@ -54,7 +54,7 @@ static bool	convert_wstr(t_pinfo *info)
 		info->count += info->ft_putwc(*str++);
 	}
 	if (info->flags & F_LEFTALIGN)
-		add_padding(info, &len, ' ');
+		add_padding(info, len, ' ');
 	if (info->flags & F_LEFTALIGN)
 		while (extra--)
 			info->count += info->ft_putc(' ');
@@ -75,10 +75,10 @@ bool	convert_str(t_pinfo *info)
 		str = NULL_STR;
 	len = (int)ft_strnlen(str, (size_t)info->precision);
 	if (!(info->flags & F_LEFTALIGN))
-		add_padding(info, &len, ' ');
+		add_padding(info, len, ' ');
 	while (*str && info->precision--)
 		info->count += info->ft_putc(*str++);
 	if (info->flags & F_LEFTALIGN)
-		add_padding(info, &len, ' ');
+		add_padding(info, len, ' ');
 	return (true);
 }

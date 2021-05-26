@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 20:25:26 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/22 16:59:05 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/25 22:59:57 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "flags.h"
 #include "libft.h"
 
-void	add_padding(t_pinfo *info, int *len, char c)
+void	add_padding(t_pinfo *info, int len, char c)
 {
-	while ((*len)++ < info->width)
+	while (len++ < info->width)
 	{
 		info->ft_putc(c);
 		info->count++;
