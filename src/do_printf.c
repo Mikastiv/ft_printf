@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/26 19:38:53 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/26 20:12:51 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "convert.h"
 #include "utils.h"
 #include <stdbool.h>
+#include <limits.h>
 
 static void	get_flags(const char **fmt, t_pinfo *info)
 {
@@ -111,7 +112,6 @@ int	do_printf(const char *fmt, t_pinfo *info)
 	bool	error;
 
 	error = false;
-	info->count = 0;
 	while (*fmt)
 	{
 		if (*fmt != '%')
@@ -125,7 +125,8 @@ int	do_printf(const char *fmt, t_pinfo *info)
 		get_width(&fmt, info);
 		get_precision(&fmt, info);
 		get_length(&fmt, info);
-		if (!convert(&fmt, info) || (int)info->count < 0)
+		if (info->width + (int)info->count >= INT_MAX
+			||!convert(&fmt, info) || (int)info->count < 0)
 			error = true;
 		if (error)
 			break ;
