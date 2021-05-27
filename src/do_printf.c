@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/26 20:12:51 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/26 20:56:33 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int	do_printf(const char *fmt, t_pinfo *info)
 		get_width(&fmt, info);
 		get_precision(&fmt, info);
 		get_length(&fmt, info);
-		if (info->width + (int)info->count >= INT_MAX
+		if (info->width + info->count >= (long long)INT_MAX
 			||!convert(&fmt, info) || (int)info->count < 0)
 			error = true;
 		if (error)
