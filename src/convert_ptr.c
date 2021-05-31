@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_ptr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 23:57:12 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/24 22:26:36 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/05/31 15:34:06 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,23 @@
 #include "flags.h"
 #include "convert_num_utils.h"
 #include <stdlib.h>
+
+static void	print_number(t_pinfo *info, char *str, char pad_char)
+{
+	if (!(info->flags & F_LEFTALIGN) && pad_char == ' ')
+		add_num_padding(info, pad_char);
+	ft_putstr("0x", info);
+	if (!(info->flags & F_LEFTALIGN) && pad_char == '0')
+		add_num_padding(info, pad_char);
+	if (info->flags & F_PRECISION)
+		while (info->precision && info->precision-- > 0 && ++info->count)
+			info->ft_putc('0');
+	if (!(info->flags & F_PRECISION && info->precision <= 0
+			&& ft_strncmp(str, "0", 2) == 0))
+		ft_putstr(str, info);
+	if (info->flags & F_LEFTALIGN)
+		add_num_padding(info, pad_char);
+}
 
 bool	convert_ptr(t_pinfo *info)
 {
@@ -30,17 +47,10 @@ bool	convert_ptr(t_pinfo *info)
 	info->width -= 2;
 	pad_char = get_pad_char(info);
 	calculate_padding(info, str);
-	if (!(info->flags & F_LEFTALIGN) && pad_char == ' ')
-		add_num_padding(info, pad_char);
-	ft_putstr("0x", info);
-	if (!(info->flags & F_LEFTALIGN) && pad_char == '0')
-		add_num_padding(info, pad_char);
-	if (info->flags & F_PRECISION)
-		while (info->precision && info->precision-- > 0 && ++info->count)
-			info->ft_putc('0');
-	ft_putstr(str, info);
-	if (info->flags & F_LEFTALIGN)
-		add_num_padding(info, pad_char);
+	if (info->flags & F_PRECISION && info->precision <= 0
+		&& ft_strncmp(str, "0", 2) == 0)
+		info->width++;
+	print_number(info, str, pad_char);
 	free(str);
 	return (true);
 }
