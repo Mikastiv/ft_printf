@@ -6,7 +6,7 @@
 #    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/07 13:43:15 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/26 18:47:25 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/06/07 18:45:03 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS	=	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c $\
 			ft_ltoa_base.c ft_ultoa_base.c ft_ultoa.c ft_wstrlen.c $\
 			ft_wstrnlen.c ft_wchar_size.c ft_putwchar_fd.c ft_putwstr_fd.c $\
 			ft_wstr_size.c ft_lltoa_base.c ft_lltoa.c ft_ulltoa_base.c $\
-			ft_ulltoa.c
+			ft_ulltoa.c ft_putnbr_base_fd.c ft_putunbr_base_fd.c ft_numlen.c $\
+			ft_unumlen.c ft_ntoa.c ft_untoa.c
 OBJS	=	$(SRCS:.c=.o)
 B_SRCS	=	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c $\
 			ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c $\

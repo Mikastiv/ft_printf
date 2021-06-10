@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lltoa_base.c                                    :+:      :+:    :+:   */
+/*   ft_unumlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/26 18:34:42 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/06/07 18:49:25 by mleblanc         ###   ########.fr       */
+/*   Created: 2021/06/07 18:22:31 by mleblanc          #+#    #+#             */
+/*   Updated: 2021/06/07 18:23:18 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
-char	*ft_lltoa_base(long long n, const char *base)
+size_t	ft_unumlen(unsigned long long n, unsigned long long radix)
 {
-	char	*ret;
 	size_t	len;
-	size_t	size;
-	size_t	base_len;
 
-	base_len = ft_strlen(base);
-	len = ft_numlen(n, base_len);
-	size = len + 1;
-	if (n < 0)
-		size += 1;
-	ret = (char *)ft_calloc(size, sizeof(char));
-	if (!ret)
-		return (NULL);
-	ft_ntoa(ret, n, len, base);
-	return (ret);
+	len = 0;
+	while (n / radix != 0)
+	{
+		n /= radix;
+		len++;
+	}
+	return (len + 1);
 }
