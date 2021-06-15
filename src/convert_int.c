@@ -79,8 +79,8 @@ static void	print_number(t_pinfo *info, char *str, char *prefix, char pad_char)
 	if (prefix && pad_char == ' ')
 		ft_putstr(prefix, info);
 	if (info->flags & F_PRECISION)
-		while (info->precision && info->precision-- > 0 && ++info->count)
-			info->ft_putc('0');
+		while (info->precision && info->precision-- > 0)
+			info->count += info->ft_putc('0');
 	ft_putstr(str, info);
 	if (info->flags & F_LEFTALIGN)
 		add_num_padding(info, pad_char);

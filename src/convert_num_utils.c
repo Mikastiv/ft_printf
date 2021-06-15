@@ -18,10 +18,7 @@
 void	add_num_padding(t_pinfo *info, char c)
 {
 	while (info->width-- > 0)
-	{
-		info->ft_putc(c);
-		info->count++;
-	}
+		info->count += info->ft_putc(c);
 }
 
 void	add_num_padding_sign(t_pinfo *info, char c, char *prefix)
@@ -29,20 +26,11 @@ void	add_num_padding_sign(t_pinfo *info, char c, char *prefix)
 	if (prefix)
 		info->width--;
 	if (info->flags & F_LEFTALIGN && prefix)
-	{
-		info->ft_putc(*prefix);
-		info->count++;
-	}
+		info->count += info->ft_putc(*prefix);
 	while (info->width-- > 0)
-	{
-		info->ft_putc(c);
-		info->count++;
-	}
+		info->count += info->ft_putc(c);
 	if (!(info->flags & F_LEFTALIGN) && prefix)
-	{
-		info->ft_putc(*prefix);
-		info->count++;
-	}
+		info->count += info->ft_putc(*prefix);
 }
 
 void	calculate_padding(t_pinfo *info, char *str)

@@ -116,8 +116,7 @@ int	do_printf(const char *fmt, t_pinfo *info)
 	{
 		if (*fmt != '%')
 		{
-			info->ft_putc(*fmt++);
-			info->count++;
+			info->count += info->ft_putc(*fmt++);
 			continue ;
 		}
 		fmt++;

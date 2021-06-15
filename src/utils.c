@@ -17,19 +17,13 @@
 void	add_padding(t_pinfo *info, int len, char c)
 {
 	while (len++ < info->width)
-	{
-		info->ft_putc(c);
-		info->count++;
-	}
+		info->count += info->ft_putc(c);
 }
 
 void	ft_putstr(char *str, t_pinfo *info)
 {
 	while (*str)
-	{
-		info->ft_putc(*str++);
-		info->count++;
-	}
+		info->count += info->ft_putc(*str++);
 }
 
 char	get_pad_char(t_pinfo *info)
