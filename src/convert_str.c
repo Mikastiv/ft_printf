@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:45:36 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/26 20:09:10 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/06/15 20:28:21 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	extra_space(const wchar_t *s, int precision, bool has_prec_flag)
 	while (has_prec_flag && *s && (int)ft_wchar_size(*s) <= precision)
 	{
 		precision -= (int)ft_wchar_size(*s);
-		s++;
+		++s;
 	}
 	if (has_prec_flag && prec < size)
 		return (precision);

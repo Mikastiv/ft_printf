@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 14:10:20 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/06/09 20:31:27 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/06/15 20:29:16 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,25 @@
 
 bool	convert(const char **fmt, t_pinfo *info)
 {
-	if (**fmt == 'c' && (*fmt)++)
+	if (**fmt == 'c' && ++(*fmt))
 		return (convert_char(info, va_arg(info->va, unsigned int)));
-	else if (**fmt == 's' && (*fmt)++)
+	else if (**fmt == 's' && ++(*fmt))
 		return (convert_str(info));
-	else if (**fmt == 'p' && (*fmt)++)
+	else if (**fmt == 'p' && ++(*fmt))
 		return (convert_ptr(info));
-	else if ((**fmt == 'd' || **fmt == 'i') && (*fmt)++)
+	else if ((**fmt == 'd' || **fmt == 'i') && ++(*fmt))
 		return (convert_int(info));
-	else if (**fmt == 'u' && (*fmt)++)
+	else if (**fmt == 'u' && ++(*fmt))
 		return (convert_uint(info, "0123456789", ""));
-	else if (**fmt == 'x' && (*fmt)++)
+	else if (**fmt == 'x' && ++(*fmt))
 		return (convert_uint(info, "0123456789abcdef", "0x"));
-	else if (**fmt == 'X' && (*fmt)++)
+	else if (**fmt == 'X' && ++(*fmt))
 		return (convert_uint(info, "0123456789ABCDEF", "0X"));
-	else if (**fmt == 'b' && (*fmt)++)
+	else if (**fmt == 'b' && ++(*fmt))
 		return (convert_uint(info, "01", "0b"));
-	else if (**fmt == '%' && (*fmt)++)
+	else if (**fmt == '%' && ++(*fmt))
 		return (convert_percent(info));
-	else if (**fmt == 'n' && (*fmt)++)
+	else if (**fmt == 'n' && ++(*fmt))
 		return (convert_n(info));
 	else
 		return (convert_char(info, *((*fmt)++)));

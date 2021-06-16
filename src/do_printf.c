@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 20:36:48 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/26 20:56:33 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/06/15 20:29:45 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	get_flags(const char **fmt, t_pinfo *info)
 			info->flags |= F_PLUS;
 		else
 			break ;
-		(*fmt)++;
+		++(*fmt);
 	}
 	if (info->flags & F_LEFTALIGN)
 		info->flags &= ~F_ZEROPAD;
@@ -60,7 +60,7 @@ static void	get_width(const char **fmt, t_pinfo *info)
 		}
 		else
 			info->width = arg;
-		(*fmt)++;
+		++(*fmt);
 	}
 }
 
@@ -70,7 +70,7 @@ static void	get_precision(const char **fmt, t_pinfo *info)
 	if (**fmt == '.')
 	{
 		info->flags |= F_PRECISION;
-		(*fmt)++;
+		++(*fmt);
 		if (ft_isdigit(**fmt))
 			info->precision = to_int(fmt);
 		else if (**fmt == '*')
@@ -78,7 +78,7 @@ static void	get_precision(const char **fmt, t_pinfo *info)
 			info->precision = va_arg(info->va, int);
 			if (info->precision < 0)
 				info->flags &= ~F_PRECISION;
-			(*fmt)++;
+			++(*fmt);
 		}
 	}
 }
@@ -88,21 +88,21 @@ static void	get_length(const char **fmt, t_pinfo *info)
 	if (**fmt == 'l')
 	{
 		info->flags |= F_LONG;
-		(*fmt)++;
+		++(*fmt);
 		if (**fmt == 'l')
 		{
 			info->flags |= F_LONG_LONG;
-			(*fmt)++;
+			++(*fmt);
 		}
 	}
 	else if (**fmt == 'h')
 	{
 		info->flags |= F_HALF;
-		(*fmt)++;
+		++(*fmt);
 		if (**fmt == 'h')
 		{
 			info->flags |= F_HALF_HALF;
-			(*fmt)++;
+			++(*fmt);
 		}
 	}
 }
@@ -119,7 +119,7 @@ int	do_printf(const char *fmt, t_pinfo *info)
 			info->count += info->ft_putc(*fmt++);
 			continue ;
 		}
-		fmt++;
+		++fmt;
 		get_flags(&fmt, info);
 		get_width(&fmt, info);
 		get_precision(&fmt, info);
