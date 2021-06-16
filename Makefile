@@ -6,7 +6,7 @@
 #    By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 19:00:56 by mleblanc          #+#    #+#              #
-#    Updated: 2021/05/26 19:53:04 by mleblanc         ###   ########.fr        #
+#    Updated: 2021/06/16 17:53:55 by mleblanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ NORMINETTE	=	norminette
 			$(CC) $(CFLAGS) -c $< -o $@ -I$(INC) -I$(LIBFT_INC)
 
 $(NAME):	$(OBJS)
-			$(MAKELIBFT) bonus
+			$(MAKELIBFT)
 			$(CP) $(LIBFT) $(NAME)
 			$(LIBC) $(NAME) $(OBJS)
 
@@ -46,8 +46,6 @@ norme:
 			$(NORMINETTE) $(SRCS) $(addprefix $(INC)/, $(HFILES)) include/flags.h
 
 all:		$(NAME)
-
-bonus:		all
 
 clean:
 			$(MAKELIBFT) clean
@@ -59,4 +57,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re norme bonus
+.PHONY:		all clean fclean re norme
