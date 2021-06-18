@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 14:10:20 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/06/15 20:29:16 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/06/17 21:44:49 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "convert_int.h"
 #include "convert_uint.h"
 #include "convert_n.h"
+#include "convert_float.h"
 
 bool	convert(const char **fmt, t_pinfo *info)
 {
@@ -41,6 +42,8 @@ bool	convert(const char **fmt, t_pinfo *info)
 		return (convert_percent(info));
 	else if (**fmt == 'n' && ++(*fmt))
 		return (convert_n(info));
+	else if (**fmt == 'f' && ++(*fmt))
+		return (convert_float(info));
 	else
 		return (convert_char(info, *((*fmt)++)));
 }

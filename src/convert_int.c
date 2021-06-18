@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:33:22 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/26 18:59:42 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/06/17 21:27:52 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "utils.h"
 #include "convert_num_utils.h"
 #include <stdlib.h>
-#include <stdbool.h>
 
 static long long	get_number(t_pinfo *info)
 {
