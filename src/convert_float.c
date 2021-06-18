@@ -6,7 +6,7 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 21:24:02 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/06/17 22:25:36 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/06/17 23:27:37 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 #include "convert_num_utils.h"
 #include <stdlib.h>
 #include <limits.h>
+#include <float.h>
+
+static bool	is_special(double nb)
+{
+	if (nb != nb || nb < -DBL_MAX || nb > DBL_MAX)
+		return (true);
+	return (false);
+}
 
 static char	*get_prefix(t_pinfo *info, double nb)
 {
@@ -66,6 +74,8 @@ bool	convert_float(t_pinfo *info)
 
 	nb = va_arg(info->va, double);
 	pad_char = get_pad_char(info);
+	if (is_special(nb))
+		pad_char = ' ';
 	prefix = get_prefix(info, nb);
 	if (!(info->flags & F_PRECISION))
 		info->precision = 6;
