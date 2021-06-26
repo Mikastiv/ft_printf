@@ -6,11 +6,11 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 14:26:13 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/25 23:00:18 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/06/26 01:58:26 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "convert_char.h"
+#include "convert.h"
 #include "flags.h"
 #include "utils.h"
 #include "libft.h"

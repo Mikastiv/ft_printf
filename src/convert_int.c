@@ -6,15 +6,15 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 16:33:22 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/06/17 21:27:52 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/06/26 02:01:37 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "convert_int.h"
+#include "convert.h"
 #include "flags.h"
 #include "libft.h"
 #include "utils.h"
-#include "convert_num_utils.h"
+#include "utils.h"
 #include <stdlib.h>
 
 static long long	get_number(t_pinfo *info)

@@ -6,11 +6,11 @@
 /*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 18:10:53 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/26 19:37:32 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/06/26 01:58:56 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "convert_n.h"
+#include "convert.h"
 #include "flags.h"
 
 static void	long_ptr(t_pinfo *info)

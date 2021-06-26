@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   convert_num_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleblanc <mleblanc@student.42quebec>       +#+  +:+       +#+        */
+/*   By: mleblanc <mleblanc@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 19:51:18 by mleblanc          #+#    #+#             */
-/*   Updated: 2021/05/26 14:50:15 by mleblanc         ###   ########.fr       */
+/*   Updated: 2021/06/26 02:03:19 by mleblanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "convert_num_utils.h"
+#include "utils.h"
 #include "flags.h"
 #include "libft.h"
 #include <limits.h>
