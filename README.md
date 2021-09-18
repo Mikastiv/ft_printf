@@ -2,6 +2,7 @@
 42 project. Mimic part of MacOS' printf.
 
 ## Conversions
+
 - %s: string
 - %d %i: integer
 - %p: pointer
@@ -13,6 +14,7 @@
 - %x %X: hexadecimal
 
 ## Flags
+
 - '0': zero padding
 - '-': align left
 - ' ': space for positive sign
@@ -23,6 +25,7 @@
 - width and precision are supported as litteral values
 
 ## Length modifiers
+
 - l
 - ll
 - h
